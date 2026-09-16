@@ -1,0 +1,139 @@
+@import "~frontend-scss-mixins/mixins";
+@import "../base/mixins";
+@import "../base/media-queries";
+
+.locations {
+    max-width: 1060px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    padding: 80px 0 80px;
+    width: 100%;
+
+    @include mobile-screen {
+        padding: 60px 20px 0;
+        max-width: 100%;
+    }
+
+    &__title {
+        font-style: normal;
+        font-weight: 600;
+        font-size: 26px;
+        line-height: 1;
+        text-transform: uppercase;
+
+        @include mobile-screen {
+            font-size: 19px;
+        }
+    }
+    &__list{
+        margin-top: 20px;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+    &__list-item{
+        display: grid;
+        grid-template-areas:
+        "content"
+        "map";
+        grid-template-columns: auto;
+        gap: 30px 90px;
+        padding: 30px 0px;
+        position: relative;
+        border-top: 1px solid rgba(0, 0, 0, 0.2);
+
+        @include mobile-screen {
+            grid-template-areas:
+        "num content"
+        "map map";
+            grid-gap: 20px 50px;
+            padding: 20px 0;
+        }
+    }
+    &__list-item-num{
+        font-style: normal;
+        font-weight: 500;
+        grid-area: num;
+        font-size: 22px;
+        @include mobile-screen {
+            font-size: 18px;
+        }
+    }
+    &__list-item-content{
+        display: grid;
+        align-items: flex-end;
+        grid-template-areas:
+        "street phone"
+        "district mail";
+        grid-template-columns: auto 1fr;
+        gap: 5px 40px;
+
+        @include mobile-screen {
+            grid-area: content;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start
+        }
+    }
+    &__list-item-content-street{
+        font-style: normal;
+        font-weight: 500;
+        line-height: 1.4;
+        padding-right: 0px;
+        font-size: 22px;
+        margin-bottom: 0px;
+        grid-area: street;
+        @include mobile-screen {
+            font-size: 18px;
+        }
+    }
+    &__list-item-content-district{
+        font-style: normal;
+        font-weight: 400;
+        color: var(--secondaryText);
+        margin-bottom: 0px;
+        font-size: 15px;
+        grid-area: district;
+        @include mobile-screen {
+            font-size: 13px;
+        }
+    }
+    &__list-item-content-phone{
+        font-style: normal;
+        font-weight: 400;
+        font-size: 17px;
+        grid-area: phone;
+        @include mobile-screen {
+            font-size: 15px;
+        }
+    }
+    &__list-item-content-mail{
+        font-style: normal;
+        font-weight: 400;
+        font-size: 17px;
+        grid-area: mail;
+        @include mobile-screen {
+            font-size: 15px;
+        }
+    }
+
+    &__list-item-map{
+        padding-bottom: 300px;
+        filter: grayscale(0.7);
+        position: relative;
+        height: 0px;
+        grid-area: map;
+        overflow: hidden;
+
+
+        iframe{
+            width: 100%;
+        }
+
+        @include mobile-screen {
+            padding-bottom: 200px;
+        }
+    }
+
+}

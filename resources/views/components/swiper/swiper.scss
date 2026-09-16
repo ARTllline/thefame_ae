@@ -1,0 +1,148 @@
+@import "~swiper/swiper-bundle.min.css";
+@import "~frontend-scss-mixins/mixins";
+@import "../base/mixins";
+@import "../base/media-queries";
+
+.swiper{
+    overflow: visible!important;
+    width: 100%;
+    height: 100%;
+
+    padding-bottom: 70px !important;
+
+    @include mobile-screen {
+        padding-bottom: 50px !important;
+    }
+
+    &--hidden{
+        overflow: hidden!important;
+        padding-bottom: 0px !important;
+
+        .slider-button-prev {
+            left: 5px;
+            @include mobile-screen {
+                left: 0;
+            }
+        }
+        .slider-button-next {
+            right: 5px;
+            @include mobile-screen {
+                right: 0;
+            }
+        }
+    }
+    &--contained {
+        overflow: hidden !important;
+        // padding-bottom мы не трогаем, он наследуется от базового .swiper (70px/50px),
+        // чтобы точки пагинации не обрезались.
+
+        // Возвращаем кнопки внутрь контейнера, чтобы их не обрезало
+        .slider-button-prev {
+            left: 10px;
+            @include mobile-screen {
+                left: 0;
+            }
+        }
+
+        .slider-button-next {
+            right: 10px;
+            @include mobile-screen {
+                right: 0;
+            }
+        }
+    }
+
+    &--padding{
+        padding-bottom: 60px !important;
+        padding-left: 60px;
+        padding-right: 60px;
+        @include mobile-screen {
+            padding-left: 24px;
+            padding-right: 24px;
+        }
+    }
+
+}
+
+.swiper-wrapper {
+    display: flex;
+}
+.swiper-slide {
+    transition: opacity 0.3s ease;
+}
+.swiper-button-disabled {
+    opacity: .5;
+    cursor: default;
+}
+.slider-button-prev {
+    left: calc(-10px - 50px);
+}
+.slider-button-next {
+    right: calc(-10px - 50px);
+
+    svg {
+        transform: rotate(180deg);
+    }
+}
+
+.slider-button-prev, .slider-button-next {
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    background-color: #fff;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, .04);
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    transition: .3s;
+
+    &::after{
+        content: none;
+    }
+
+    svg{
+        stroke: #cd76aa;
+        fill: #cd76aa;
+    }
+}
+
+.swiper-pagination-bullet {
+    outline: none !important;
+    border: none !important;
+    opacity: .3;
+    background-color: #be5293;
+}
+.swiper-pagination-bullet-active {
+    position: relative;
+    opacity: 1;
+
+    &:before{
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: block;
+        height: 13px;
+        width: 13px;
+        border-radius: 100%;
+        overflow: hidden;
+        background-color: #be5293;
+        opacity: 1;
+    }
+}
+.swiper-pagination-bullets>* {
+    margin: 0 8px !important;
+}
+.swiper-pagination-clickable .swiper-pagination-bullet {
+    cursor: pointer;
+}

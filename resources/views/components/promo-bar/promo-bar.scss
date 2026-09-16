@@ -1,0 +1,66 @@
+@import "~frontend-scss-mixins/mixins";
+@import "../base/mixins";
+@import "../base/media-queries";
+.promo-bar {
+    width: 100%;
+    background: #000;
+    color: #fff;
+    text-align: center;
+    position: relative;
+    z-index: 25;
+
+    opacity: 0;
+    max-height: 0;
+    padding: 0 0;
+    overflow: hidden;
+    transition: opacity 0.4s ease, max-height 0.4s ease, padding 0.4s ease;
+
+    &--visible {
+        opacity: 1;
+        max-height: 100px;
+        padding: 12px 0;
+    }
+
+    &__wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        //max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 30px;
+    }
+
+    &__link {
+        max-width: 1200px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        color: #fff;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 500;
+
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-family: inherit;
+
+        &:hover { text-decoration: underline; }
+    }
+
+    &__close {
+        position: absolute;
+        right: 40px;
+        background: none;
+        border: none;
+        color: #fff;
+        cursor: pointer;
+        font-size: 20px;
+        padding: 0;
+
+        @include mobile-screen {
+            right: 14px;
+        }
+    }
+}

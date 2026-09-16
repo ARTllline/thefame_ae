@@ -1,0 +1,165 @@
+@import "~frontend-scss-mixins/mixins";
+@import "../base/mixins";
+@import "../base/media-queries";
+
+
+.gallery {
+    display: flex;
+    flex-direction: column;
+    max-width: 1260px;
+    width: 100%;
+    margin: 100px auto 0;
+
+    @include mobile-screen {
+        margin: 80px auto 0;
+        padding: 40px 12px 0;
+        max-width: 100%;
+    }
+
+    &__header {
+        text-align: center;
+        margin-bottom: 30px;
+
+        @include mobile-screen {
+            margin-bottom: 10px;
+            text-align: left;
+        }
+    }
+
+    &__title {
+        font-size: 54px;
+        line-height: 1.15;
+        font-weight: 300;
+        margin-bottom: 16px;
+        color: #111;
+
+        @include mobile-screen {
+            font-size: 32px;
+            margin-bottom: 12px;
+        }
+    }
+
+    &__subtitle {
+        font-size: 18px;
+        line-height: 1.5;
+        color: #666;
+        max-width: 760px;
+        margin: 0 auto;
+
+        @include mobile-screen {
+            font-size: 14px;
+            line-height: 1.4;
+        }
+    }
+    &__link {
+        margin-top: 12px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 6px;
+
+        font-style: normal;
+        font-weight: 800;
+        font-size: 18px;
+        line-height: 25px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--accent);
+
+        svg{
+            width: 40px;
+            height: 40px;
+            stroke: var(--accent);
+            fill: none;
+        }
+
+        &:hover{
+            svg{
+                stroke: var(--link-hover-color);
+            }
+        }
+
+        @include mobile-screen {
+            //display: none;
+        }
+    }
+    &__container {
+        margin-top: 40px;
+    }
+
+
+    .slide-content {
+        display: grid;
+        gap: 30px;
+        height: 600px;
+    }
+
+    // Вариант A для четных слайдов (1-й, 3-й, … с учетом нумерации, где :nth-child(even) применяется ко слайду)
+    .swiper-slide:nth-child(even) .slide-content {
+        grid-template-areas:
+    "large large"
+    "small1 small2";
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto auto;
+    }
+
+    .swiper-slide:nth-child(even) .slide-item {
+        // по умолчанию задаём одинаковую стилизацию для внутренних блоков
+        overflow: hidden;
+    }
+
+    .swiper-slide:nth-child(even) .slide-item:nth-child(1) {
+        grid-area: large;
+    }
+
+    .swiper-slide:nth-child(even) .slide-item:nth-child(2) {
+        grid-area: small1;
+    }
+
+    .swiper-slide:nth-child(even) .slide-item:nth-child(3) {
+        grid-area: small2;
+    }
+
+    // Вариант B для нечетных слайдов (2-й, 4-й, …)
+    .swiper-slide:nth-child(odd) .slide-content {
+        grid-template-areas:
+    "small1 small2"
+    "large large";
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto auto;
+    }
+
+    .swiper-slide:nth-child(odd) .slide-item {
+        overflow: hidden;
+    }
+
+    .swiper-slide:nth-child(odd) .slide-item:nth-child(1) {
+        grid-area: small1;
+    }
+
+    .swiper-slide:nth-child(odd) .slide-item:nth-child(2) {
+        grid-area: small2;
+    }
+
+    .swiper-slide:nth-child(odd) .slide-item:nth-child(3) {
+        grid-area: large;
+    }
+
+    // Пример базовой стилизации изображений для адаптивности
+    .slide-item {
+
+        a {
+            width: 100%;
+            height: 100%;
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+        }
+
+    }
+
+}

@@ -1,0 +1,322 @@
+@import "~frontend-scss-mixins/mixins";
+@import "../base/mixins";
+@import "../base/media-queries";
+
+
+.devices {
+    display: flex;
+    flex-direction: column;
+    max-width: 1260px;
+    width: 100%;
+    margin: 100px auto 0;
+    //min-height: 100vh;
+
+    @include mobile-screen {
+        margin: 80px auto 0;
+        padding: 40px 20px 0;
+        max-width: 100%;
+    }
+
+    &__header {
+        text-align: center;
+        margin-bottom: 30px;
+
+        @include mobile-screen {
+            margin-bottom: 10px;
+            text-align: left;
+        }
+    }
+
+    &__title {
+        font-size: 54px;
+        line-height: 1.15;
+        font-weight: 300;
+        margin-bottom: 16px;
+        color: #111;
+
+        @include mobile-screen {
+            font-size: 32px;
+            margin-bottom: 12px;
+        }
+    }
+
+    &__subtitle {
+        font-size: 18px;
+        line-height: 1.5;
+        color: #666;
+        max-width: 760px;
+        margin: 0 auto;
+
+        @include mobile-screen {
+            font-size: 14px;
+            line-height: 1.4;
+        }
+    }
+
+    &__subtitle-bottom {
+        font-size: 14px;
+        line-height: 1.5;
+        color: #666;
+        max-width: 760px;
+        margin: 0 auto;
+        margin-top: 8px;
+
+        @include mobile-screen {
+            font-size: 14px;
+            line-height: 1.4;
+            margin-top: 6px;
+        }
+    }
+
+    &__list {
+        margin-top: 80px;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        gap: 80px;
+
+        @include mobile-screen {
+            gap: 60px;
+            margin-top: 30px;
+        }
+    }
+    &__card {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        width: 100%;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        margin: 0 auto;
+        gap: 60px;
+
+        @include mobile-screen {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            padding-top: 0px;
+            padding-bottom: 0px;
+        }
+    }
+
+    &__card-img {
+        width: 320px;
+        height: 100%;
+        position: relative;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+
+        @include mobile-screen {
+            width: 100%;
+            overflow: hidden;
+        }
+
+        a{
+            width: 100%;
+            height: 100%;
+            object-position: center;
+        }
+
+        img {
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+            object-position: center;
+        }
+    }
+    &__card-img-main {
+        height: 430px;
+
+        @include mobile-screen {
+            height: 310px!important;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+    }
+    &__card-img-prev {
+        height: 80px;
+    }
+    &__card-clip-path-effect {
+        cursor: pointer;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        position: relative;
+        overflow: hidden;
+        animation: 20s ease-in-out 0s infinite alternate both running movingShapeAnimation;
+
+        @include mobile-screen {
+            animation: none;
+        }
+    }
+    &__card-img-nav-item {
+        cursor: pointer;
+
+        border-radius: 40%;
+        overflow: hidden;
+        position: relative;
+        height: 100%;
+        img{
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+            object-position: center;
+        }
+    }
+    &__card-background {
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 0;
+        transform: translateY(-50px) scale(1.15);
+        fill: var(--shapeColor);
+
+        @include mobile-screen {
+            display: none;
+        }
+    }
+
+
+    &__swiper-prev{
+        .swiper-slide {
+            opacity: 0.4;
+        }
+        .swiper-slide-thumb-active {
+            opacity: 1;
+        }
+    }
+
+
+
+    &__card-content{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        z-index: 2;
+        position: relative;
+
+        @include mobile-screen {
+            padding: 0px 20px 0;
+        }
+    }
+    &__card-content-title {
+        font-weight: 300;
+        font-size: 60px;
+        margin-left: -60px;
+
+        font-style: normal;
+        line-height: 1.2em;
+        display: flex;
+        flex-direction: column;
+
+        @include mobile-screen {
+            font-weight: 400;
+            font-size: 30px;
+            margin-left: 0px;
+
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+    }
+    &__card-content-title-left {}
+    &__card-content-title-right {
+        margin-left: 60px;
+        margin-top: -15px !important;
+
+        @include mobile-screen {
+            margin-left: 0px;
+            margin-top: 0px !important;
+        }
+    }
+    &__card-content-text{
+        margin-top: 40px;
+        font-size: 20px;
+        position: relative;
+        overflow: hidden;
+        max-height: 190px;
+        transition: max-height 0.4s ease;
+
+        @include mobile-screen {
+            margin-top: 20px;
+        }
+    }
+    &__card-content-read-more{
+        font-size: 20px;
+        margin-top: 12px;
+        display: flex;
+    }
+    &__card-content-read-less{
+        font-size: 20px;
+        margin-top: 12px;
+        display: none;
+    }
+
+    &__card-links {
+        margin-top: 55px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 40px;
+
+        @include mobile-screen {
+            width: 100%;
+            margin-top: 30px;
+            flex-direction: column-reverse;
+            gap: 16px;
+        }
+    }
+    &__card-button {
+        height: 60px;
+        width: fit-content;
+        background-color: var(--brightAccent);
+
+        @include mobile-screen {
+            width: 100% !important;
+            height: 50px;
+
+            font-weight: 700;
+            font-size: 16px;
+            line-height: 22px;
+        }
+    }
+    &__card-link {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 6px;
+
+        font-style: normal;
+        font-weight: 800;
+        font-size: 18px;
+        line-height: 25px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--accent);
+
+        svg{
+            width: 40px;
+            height: 40px;
+            stroke: var(--accent);
+            fill: none;
+        }
+
+        &:hover{
+            svg{
+                stroke: var(--link-hover-color);
+            }
+        }
+
+        @include mobile-screen {
+            //display: none;
+        }
+    }
+
+
+
+
+}

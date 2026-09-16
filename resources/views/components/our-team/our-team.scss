@@ -1,0 +1,244 @@
+@import "~frontend-scss-mixins/mixins";
+@import "../base/mixins";
+@import "../base/media-queries";
+
+@keyframes borderRadiusAnimation {
+    0%, 100% {
+        border-radius: 63% 40% 52% 49% / 66% 63% 43% 40%;
+    }
+    14% {
+        border-radius: 40% 60% 54% 46% / 49% 60% 40% 51%;
+    }
+    28% {
+        border-radius: 53% 42% 36% 61% / 49% 68% 34% 53%;
+    }
+    42% {
+        border-radius: 61% 39% 55% 45% / 61% 38% 62% 39%;
+    }
+    56% {
+        border-radius: 59% 41% 64% 39% / 72% 46% 51% 33%;
+    }
+    70% {
+        border-radius: 50% 50% 34% 66% / 56% 68% 32% 44%;
+    }
+    84% {
+        border-radius: 46% 54% 50% 50% / 35% 61% 39% 65%;
+    }
+}
+.our-team {
+    display: flex;
+    flex-direction: column;
+    max-width: 1060px;
+    width: 100%;
+    margin: 100px auto 0;
+    position: relative;
+
+    @include mobile-screen {
+        margin: 110px auto 0;
+        max-width: 100%;
+        padding: 0 20px;
+    }
+
+    &__header {
+        text-align: center;
+        margin-bottom: 30px;
+
+        @include mobile-screen {
+            margin-bottom: 10px;
+            text-align: left;
+        }
+    }
+
+    &__title {
+        font-size: 54px;
+        line-height: 1.15;
+        font-weight: 300;
+        margin-bottom: 16px;
+        color: #111;
+
+        @include mobile-screen {
+            font-size: 32px;
+            margin-bottom: 12px;
+        }
+    }
+
+    &__subtitle {
+        font-size: 18px;
+        line-height: 1.5;
+        color: #666;
+        max-width: 760px;
+        margin: 0 auto;
+
+        @include mobile-screen {
+            font-size: 14px;
+            line-height: 1.4;
+        }
+    }
+
+    // Стили для нового контейнера-карусели
+    &__slider {
+        margin-top: 60px;
+        width: 100%;
+        padding-bottom: 60px; // Отступ для пагинации (точек) внизу
+        overflow: hidden; // Swiper сам добавит нужные классы, но лучше подстраховаться
+        position: relative;
+
+        @include mobile-screen {
+            margin-top: 30px;
+            padding-bottom: 40px;
+        }
+    }
+
+    // Swiper переопределяет ширину слайда автоматически через breakpoints,
+    // поэтому &__card оставляем height: auto и width: 100% для заполнения выделенной колонки
+    &__card {
+        width: 100%;
+        height: auto;
+    }
+
+    &__card-fade {
+        color: unset;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+        transition-delay: 0.2s;
+        transform: translate(0, 0);
+        opacity: 1;
+    }
+
+    &__card-img {
+        display: flex;
+        position: relative;
+        min-height: 315px;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 10px;
+    }
+
+    &__card-moving-svg {
+        position: absolute;
+        z-index: 0;
+        width: 249px;
+        height: 315px;
+    }
+
+    &__card-clip-path {
+        z-index: 1;
+        position: relative;
+        overflow: hidden;
+        width: 100%;
+        height: 270px;
+        -webkit-animation: 20s linear 0s infinite alternate both running movingShapeAnimation;
+        animation: 20s linear 0s infinite alternate both running movingShapeAnimation;
+
+        img {
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+        }
+
+        @include mobile-screen {
+            width: 270px;
+            height: 270px;
+            max-width: 270px;
+            max-height: 270px;
+        }
+    }
+
+    &__card-name {
+        transition: background-color linear 400ms;
+        background-color: transparent;
+        box-shadow: none;
+        border-radius: 0;
+        display: block;
+        align-items: unset;
+        justify-content: unset;
+        padding: 0;
+        width: auto;
+        font-size: 22px;
+        font-style: normal;
+        font-weight: 500;
+        text-align: center;
+    }
+
+    &__card-role {
+        margin-top: 15px;
+        font-size: 17px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 1.3;
+        color: var(--secondaryText);
+        text-align: center;
+    }
+
+    &__card-link {
+        margin-top: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 4px;
+        font-style: normal;
+        font-weight: 800;
+        font-size: 18px;
+        line-height: 25px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--accent);
+
+        svg {
+            width: 26px;
+            height: 26px;
+            stroke: var(--accent);
+            fill: none;
+        }
+
+        &:hover {
+            svg {
+                stroke: var(--link-hover-color);
+            }
+        }
+    }
+
+    // Стили кнопок навигации карусели
+    &__swiper-button-prev,
+    &__swiper-button-next {
+        position: absolute;
+        top: 40%;
+        transform: translateY(-50%);
+        z-index: 10;
+        cursor: pointer;
+
+        // Добавляем hover-эффект для стрелок, если у вас его нет в глобальных стилях
+        &:hover svg path {
+            stroke: var(--accent);
+        }
+    }
+
+
+    &__swiper-button-prev {
+        left: -40px; // Вынесите за пределы карточек, настройте по вкусу
+
+
+        @include mobile-screen {
+            left: 0px;
+        }
+    }
+
+    &__swiper-button-next {
+        right: -40px;
+
+        @include mobile-screen {
+            right: 0px;
+        }
+    }
+
+    &__swiper-pagination {
+        bottom: 0 !important;
+
+        // Стилизуйте точки под ваш дизайн
+        .swiper-pagination-bullet-active {
+            background-color: var(--accent);
+        }
+    }
+}

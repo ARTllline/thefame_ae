@@ -1,0 +1,73 @@
+@import "~frontend-scss-mixins/mixins";
+@import "../base/mixins";
+@import "../base/media-queries";
+
+
+.social {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    z-index: 9;
+
+    @include mobile-screen {
+        bottom: 25px;
+        right: 20px;
+        gap: 12px;
+    }
+
+    &--dark {
+        .social__btn {
+            border-color: var(--headerPinColor);
+            color: var(--headerPinColor);
+
+            &:hover {
+                border-color: var(--brightAccent);
+                background-color: var(--accent);
+                color: #fff;
+            }
+        }
+    }
+
+
+    &__btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 52px;
+        height: 52px;
+        border-radius: 50%;
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        background-color: transparent;
+        color: #fff;
+        backdrop-filter: blur(4px);
+        transition: all 0.3s ease;
+
+        svg {
+            fill: currentColor;
+            transition: transform 0.3s ease;
+        }
+
+        &:hover {
+            border-color: var(--brightAccent);
+            background-color: var(--accent);
+            color: #fff;
+
+            svg {
+                transform: scale(1.15);
+            }
+        }
+
+        @include mobile-screen {
+            width: 44px;
+            height: 44px;
+
+            svg {
+                width: 20px;
+                height: 20px;
+            }
+        }
+    }
+}

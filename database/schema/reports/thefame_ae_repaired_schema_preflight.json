@@ -1,0 +1,67 @@
+{
+    "generated_at": "2026-08-11T15:02:31+00:00",
+    "actual_database": "thefame_ae_repaired",
+    "read_only": true,
+    "summary": {
+        "checks": 6,
+        "passed": 0,
+        "blocked": 6,
+        "review": 0
+    },
+    "checks": [
+        {
+            "id": "order_items.order_items_order_id_foreign.orphans",
+            "table": "order_items",
+            "object": "order_items_order_id_foreign",
+            "description": "Foreign key requires every non-null child value to reference an existing parent row",
+            "query": "SELECT COUNT(*) AS aggregate FROM `thefame_ae_repaired`.`order_items` child LEFT JOIN `thefame_ae_repaired`.`orders` parent ON child.`order_id` = parent.`id` WHERE child.`order_id` IS NOT NULL AND parent.`id` IS NULL",
+            "blocking_count": 23,
+            "status": "blocked"
+        },
+        {
+            "id": "order_items.order_items_product_id_foreign.orphans",
+            "table": "order_items",
+            "object": "order_items_product_id_foreign",
+            "description": "Foreign key requires every non-null child value to reference an existing parent row",
+            "query": "SELECT COUNT(*) AS aggregate FROM `thefame_ae_repaired`.`order_items` child LEFT JOIN `thefame_ae_repaired`.`products` parent ON child.`product_id` = parent.`id` WHERE child.`product_id` IS NOT NULL AND parent.`id` IS NULL",
+            "blocking_count": 23,
+            "status": "blocked"
+        },
+        {
+            "id": "product_ingredients.product_ingredients_product_id_foreign.orphans",
+            "table": "product_ingredients",
+            "object": "product_ingredients_product_id_foreign",
+            "description": "Foreign key requires every non-null child value to reference an existing parent row",
+            "query": "SELECT COUNT(*) AS aggregate FROM `thefame_ae_repaired`.`product_ingredients` child LEFT JOIN `thefame_ae_repaired`.`products` parent ON child.`product_id` = parent.`id` WHERE child.`product_id` IS NOT NULL AND parent.`id` IS NULL",
+            "blocking_count": 18,
+            "status": "blocked"
+        },
+        {
+            "id": "product_variants.product_variants_product_id_foreign.orphans",
+            "table": "product_variants",
+            "object": "product_variants_product_id_foreign",
+            "description": "Foreign key requires every non-null child value to reference an existing parent row",
+            "query": "SELECT COUNT(*) AS aggregate FROM `thefame_ae_repaired`.`product_variants` child LEFT JOIN `thefame_ae_repaired`.`products` parent ON child.`product_id` = parent.`id` WHERE child.`product_id` IS NOT NULL AND parent.`id` IS NULL",
+            "blocking_count": 84,
+            "status": "blocked"
+        },
+        {
+            "id": "service_categories.service_categories_service_id_foreign.orphans",
+            "table": "service_categories",
+            "object": "service_categories_service_id_foreign",
+            "description": "Foreign key requires every non-null child value to reference an existing parent row",
+            "query": "SELECT COUNT(*) AS aggregate FROM `thefame_ae_repaired`.`service_categories` child LEFT JOIN `thefame_ae_repaired`.`services` parent ON child.`service_id` = parent.`id` WHERE child.`service_id` IS NOT NULL AND parent.`id` IS NULL",
+            "blocking_count": 33,
+            "status": "blocked"
+        },
+        {
+            "id": "service_variants.service_variants_service_id_foreign.orphans",
+            "table": "service_variants",
+            "object": "service_variants_service_id_foreign",
+            "description": "Foreign key requires every non-null child value to reference an existing parent row",
+            "query": "SELECT COUNT(*) AS aggregate FROM `thefame_ae_repaired`.`service_variants` child LEFT JOIN `thefame_ae_repaired`.`services` parent ON child.`service_id` = parent.`id` WHERE child.`service_id` IS NOT NULL AND parent.`id` IS NULL",
+            "blocking_count": 120,
+            "status": "blocked"
+        }
+    ]
+}

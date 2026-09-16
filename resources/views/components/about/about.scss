@@ -1,0 +1,210 @@
+@import "~frontend-scss-mixins/mixins";
+@import "../base/mixins";
+@import "../base/media-queries";
+
+.about {
+    margin-top: 200px;
+    max-width: 1060px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-right: 0;
+    padding-left: 0;
+    position: relative;
+    padding-bottom: 80px;
+    @include mobile-screen {
+        margin: 120px auto 0;
+        max-width: 100%;
+        padding: 0 20px;
+    }
+
+    &__title {
+        font-size: 58px;
+        margin-bottom: 60px;
+        margin-left: -60px;
+        line-height: 1.11;
+        font-weight: 300;
+        display: flex;
+        flex-direction: column;
+
+        @include mobile-screen {
+            font-size: 28px;
+            line-height: 1.11;
+            font-weight: 300;
+            margin-left: 0px;
+            margin-bottom: 30px;
+        }
+    }
+    &__description {
+        display: grid;
+        grid-template-columns: 45% 1fr;
+        grid-column-gap: 130px;
+        position: relative;
+        z-index: 2;
+
+        @include mobile-screen {
+            display: flex;
+            flex-direction: column;
+        }
+    }
+    &__description-text {
+        font-size: 22px;
+        line-height: 1.35;
+
+        @include mobile-screen {
+            font-size: 20px;
+            line-height: 1.35;
+        }
+    }
+    &__description-accent {
+        font-weight: 500;
+        font-size: 30px;
+        line-height: 1.5em;
+        letter-spacing: .03em;
+        text-transform: uppercase;
+
+
+        @include mobile-screen {
+            font-size: 22px;
+
+            margin-left: 70px;
+            margin-top: 40px;
+        }
+    }
+    &__image {
+        margin-top: 60px;
+        position: relative;
+        display: flex;
+
+        @include mobile-screen {
+            margin-top: 50px;
+            margin-left: -20px;
+            margin-right: -20px;
+        }
+        img{
+            height: 100%;
+            width: 100%;
+            -o-object-fit: cover;
+            object-fit: cover;
+            z-index: 1;
+        }
+    }
+    &__image-shape {
+        width: 464px;
+        height: 511px;
+        transform: scale(1.3);
+
+        position: absolute;
+        left: -20%;
+        bottom: -70px;
+        z-index: 0;
+
+        svg{
+            fill: var(--shapeColor);
+            width: 100%;
+            height: 100%;
+        }
+
+        @include mobile-screen {
+            width: 285px;
+            height: 285px;
+            bottom: -30px;
+            left: -10%;
+        }
+    }
+
+
+    &__image {
+        margin-top: 60px;
+        position: relative;
+        display: flex;
+        height: 500px;
+        border-radius: 22px;
+        overflow: hidden;
+
+
+        @include mobile-screen {
+            margin-top: 50px;
+            margin-left: -20px;
+            margin-right: -20px;
+            border-radius: 0;
+            height: 400px;
+        }
+
+        a{
+            z-index: 2;
+            position: absolute;
+            backdrop-filter: blur(12px);
+        }
+        img {
+            height: 100%;
+            width: 100%;
+            -o-object-fit: contain;
+            object-fit: contain;
+            z-index: 1;
+        }
+    }
+
+    &__image-shape {
+        width: 464px;
+        height: 511px;
+        transform: scale(1.3);
+
+        position: absolute;
+        left: -20%;
+        bottom: -70px;
+        z-index: 0;
+
+        @include mobile-screen {
+            width: 285px;
+            height: 285px;
+            bottom: -30px;
+            left: -10%;
+        }
+
+        svg {
+            fill: var(--shapeColor);
+            width: 100%;
+            height: 100%;
+        }
+    }
+    &__swiper-image{
+        .swiper-wrapper{
+            height: 100%;
+        }
+    }
+
+    &__swiper-image-link{
+        width: 100%;
+        height: 100%;
+    }
+
+    &__swiper-image-bg{
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        -o-object-fit: cover!important;
+        object-fit: cover!important;
+        top: 0;
+        left: 0;
+        //filter: blur(5px);
+        z-index: 0!important;
+
+        &::before{
+
+        }
+    }
+    &__swiper-image-bg-fade{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        z-index: 0!important;
+        background: rgba(255, 255, 255, 0.5);
+    }
+    &__swiper-image-slide{
+        position: relative!important;
+        overflow: hidden!important;
+    }
+}
+.about__swiper-image-bg { pointer-events: none; }

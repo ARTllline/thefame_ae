@@ -1,0 +1,156 @@
+@import "~frontend-scss-mixins/mixins";
+@import "../base/mixins";
+@import "../base/media-queries";
+
+
+@keyframes movingShapeAnimation {
+    0%, 100% {
+        border-radius: 63% 40% 52% 49% / 66% 63% 43% 40%;
+    }
+
+    14% {
+        border-radius: 40% 60% 54% 46% / 49% 60% 40% 51%;
+    }
+
+    28% {
+        border-radius: 53% 42% 36% 61% / 49% 68% 34% 53%;
+    }
+
+    42% {
+        border-radius: 61% 39% 55% 45% / 61% 38% 62% 39%;
+    }
+
+    56% {
+        border-radius: 59% 41% 64% 39% / 72% 46% 51% 33%;
+    }
+
+    70% {
+        border-radius: 50% 50% 34% 66% / 56% 68% 32% 44%;
+    }
+
+    84% {
+        border-radius: 46% 54% 50% 50% / 35% 61% 39% 65%;
+    }
+}
+
+.service-card {
+
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 0 auto;
+    max-width: 1130px;
+    align-items: center;
+
+
+    @include mobile-screen {
+        margin: 74px auto 0;
+        padding: 0;
+        max-width: 100%;
+    }
+
+    &__prices {
+        max-width: 830px;
+        width: 100%;
+        margin: 70px auto 0;
+        padding: 0 15px; // отступы для адаптивности
+
+        @include mobile-screen {
+            margin: 20px auto 0;
+        }
+    }
+    &__prices-title {
+        margin-top: 30px;
+        font-size: 26px;
+        font-weight: 600;
+        line-height: 1;
+        text-transform: uppercase;
+        text-align: center;
+
+        @include mobile-screen {
+            margin: 20px auto 0;
+            font-size: 19px;
+        }
+    }
+    &__prices-list {
+        display: flex;
+        flex-direction: column;
+        margin-top: 30px;
+
+        @include mobile-screen {
+            margin-top: 20px;
+            width: 100%;
+        }
+    }
+    &__pricing-group {
+        margin-bottom: 30px;
+        background-color: var(--shapeColor);
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+
+        transition: all 0.3s;
+
+        &:hover {
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+    }
+    &__pricing-name {
+        font-size: 24px;
+        font-weight: 600;
+        margin-bottom: 10px;
+        text-transform: uppercase;
+        color: var(--primaryColor);
+        //border-bottom: 2px solid var(--serviceLineColor);  // визуальное разделение
+        padding-bottom: 5px;
+
+        @include mobile-screen {
+            font-size: 18px;
+        }
+    }
+    &__pricing-items {
+        // дополнительный контейнер, если понадобится расширить стилизацию
+    }
+    &__prices-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: start;
+        padding: 15px 0;
+        border-top: 1px solid var(--serviceLineColor);
+        transition: background-color 0.3s;
+        gap: 20px;
+        &:hover {
+            //   background-color: rgba(0, 0, 0, 0.03);
+        }
+
+
+        @include mobile-screen {
+            gap: 12px;
+        }
+    }
+    &__prices-item:last-child {
+        //border-bottom: none;
+        gap: 20px;
+
+    }
+    &__prices-item-name {
+        font-size: 22px;
+        font-weight: 400;
+
+        @include mobile-screen {
+            font-size: 18px;
+            overflow-wrap: break-word;
+            width: 60%;
+        }
+    }
+    &__prices-item-num {
+        font-size: 22px;
+        font-weight: 700;
+        text-transform: uppercase;
+
+        @include mobile-screen {
+            font-size: 18px;
+            width: 40%;
+        }
+    }
+}

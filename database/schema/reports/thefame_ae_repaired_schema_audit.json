@@ -1,0 +1,124 @@
+{
+    "generated_at": "2026-08-11T15:03:37+00:00",
+    "expected_manifest": "database/schema/ae_expected_schema.json",
+    "actual_database": "thefame_ae_repaired",
+    "read_only": true,
+    "summary": {
+        "total": 6,
+        "critical": 6,
+        "warning": 0,
+        "by_category": {
+            "missing_foreign_key": 6
+        }
+    },
+    "issues": [
+        {
+            "category": "missing_foreign_key",
+            "severity": "critical",
+            "table": "order_items",
+            "object": "order_items_order_id_foreign",
+            "expected": {
+                "columns": [
+                    "order_id"
+                ],
+                "referenced_table": "orders",
+                "referenced_columns": [
+                    "id"
+                ],
+                "update_rule": "NO ACTION",
+                "delete_rule": "CASCADE"
+            },
+            "actual": null
+        },
+        {
+            "category": "missing_foreign_key",
+            "severity": "critical",
+            "table": "order_items",
+            "object": "order_items_product_id_foreign",
+            "expected": {
+                "columns": [
+                    "product_id"
+                ],
+                "referenced_table": "products",
+                "referenced_columns": [
+                    "id"
+                ],
+                "update_rule": "NO ACTION",
+                "delete_rule": "SET NULL"
+            },
+            "actual": null
+        },
+        {
+            "category": "missing_foreign_key",
+            "severity": "critical",
+            "table": "product_ingredients",
+            "object": "product_ingredients_product_id_foreign",
+            "expected": {
+                "columns": [
+                    "product_id"
+                ],
+                "referenced_table": "products",
+                "referenced_columns": [
+                    "id"
+                ],
+                "update_rule": "NO ACTION",
+                "delete_rule": "CASCADE"
+            },
+            "actual": null
+        },
+        {
+            "category": "missing_foreign_key",
+            "severity": "critical",
+            "table": "product_variants",
+            "object": "product_variants_product_id_foreign",
+            "expected": {
+                "columns": [
+                    "product_id"
+                ],
+                "referenced_table": "products",
+                "referenced_columns": [
+                    "id"
+                ],
+                "update_rule": "NO ACTION",
+                "delete_rule": "CASCADE"
+            },
+            "actual": null
+        },
+        {
+            "category": "missing_foreign_key",
+            "severity": "critical",
+            "table": "service_categories",
+            "object": "service_categories_service_id_foreign",
+            "expected": {
+                "columns": [
+                    "service_id"
+                ],
+                "referenced_table": "services",
+                "referenced_columns": [
+                    "id"
+                ],
+                "update_rule": "NO ACTION",
+                "delete_rule": "CASCADE"
+            },
+            "actual": null
+        },
+        {
+            "category": "missing_foreign_key",
+            "severity": "critical",
+            "table": "service_variants",
+            "object": "service_variants_service_id_foreign",
+            "expected": {
+                "columns": [
+                    "service_id"
+                ],
+                "referenced_table": "services",
+                "referenced_columns": [
+                    "id"
+                ],
+                "update_rule": "NO ACTION",
+                "delete_rule": "CASCADE"
+            },
+            "actual": null
+        }
+    ]
+}

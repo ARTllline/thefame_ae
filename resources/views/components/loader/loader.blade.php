@@ -1,0 +1,13 @@
+@php
+
+
+@endphp
+
+
+<div class="loader">
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+</div>

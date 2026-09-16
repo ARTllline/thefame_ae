@@ -1,0 +1,92 @@
+@import "~frontend-scss-mixins/mixins";
+@import "../base/mixins";
+@import "../base/media-queries";
+
+.certificates {
+    display: flex;
+    flex-direction: column;
+    max-width: 1060px;
+    width: 100%;
+    margin: 100px auto 0;
+    padding: 0 0;
+
+    @include mobile-screen {
+        margin: 120px auto 0;
+        max-width: 100%;
+        padding: 0 20px;
+    }
+    &__title{
+        font-size: 58px;
+        margin-left: -60px;
+        line-height: 1.11;
+        font-weight: 300;
+        display: flex;
+        flex-direction: column;
+
+        @include mobile-screen {
+            font-size: 28px;
+            margin-left: 0px;
+        }
+    }
+
+    &__title-row{
+        display: block;
+    }
+    &__title-left{
+
+    }
+    &__title-right{
+        margin-left: 60px;
+        margin-top: -5px
+
+    }
+
+    &__swiper{
+        margin-top: 50px;
+        @include mobile-screen {
+            margin-top: 30px;
+            //width: 300px!important;
+
+            .swiper-button-prev{
+                display: none;
+            }
+            .swiper-button-next{
+                display: none;
+            }
+        }
+    }
+
+
+    &__card{
+        display: flex;
+        flex-direction: column;
+
+    }
+    &__card-image{
+        box-shadow: var(--basicShadow);
+        padding: 13px;
+        overflow: hidden;
+        border-radius: var(--sliderRadius);
+        background-color: var(--sliderBg);
+        img {
+            border-radius: var(--sliderRadius);
+            border: 1px solid rgba(0, 0, 0, .1);
+            overflow: hidden;
+
+            height: 100%;
+            width: 100%;
+            -o-object-fit: cover;
+            object-fit: cover;
+        }
+    }
+    &__card-subtitle{
+        font-size: 13px;
+        line-height: 1.2em;
+        text-align: center;
+        font-weight: 400;
+        margin-top: 14px;
+        padding: 0 15px;
+        color: var(--secondaryText);
+    }
+
+}

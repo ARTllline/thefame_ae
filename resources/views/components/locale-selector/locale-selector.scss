@@ -1,0 +1,69 @@
+@import "~frontend-scss-mixins/mixins";
+@import "../base/mixins";
+@import "../base/media-queries";
+
+.locale-selector {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 9999; // поверх всего
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(97, 76, 62, 0.5); // затемняющий фон
+    backdrop-filter: blur(10px); // блюр заднего фона
+    -webkit-backdrop-filter: blur(10px); // для Safari
+
+    display: none;
+
+    &--active{
+        display: flex;
+    }
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+        @include mobile-screen {
+            gap: 20px;
+        }
+    }
+
+    &__title {
+        color: #fff;
+        font-weight: 700;
+        font-size: 22px;
+        line-height: 1.2em;
+        letter-spacing: .4em;
+        text-transform: uppercase;
+    }
+
+    &__locales {
+        display: flex;
+        flex-direction: column;
+        margin-top: 30px;
+        gap: 40px;
+        align-items: center;
+        @include mobile-screen {
+            gap: 20px;
+        }
+    }
+
+    &__locale {
+        cursor: pointer;
+        transition: transform 0.3s ease;
+
+        color: #fff;
+        font-weight: 700;
+        font-size: 20px;
+        line-height: 1.2em;
+        letter-spacing: .4em;
+        text-transform: uppercase;
+
+        &:hover {
+            transform: scale(1.05);
+        }
+    }
+}

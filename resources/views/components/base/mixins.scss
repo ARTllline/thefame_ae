@@ -1,0 +1,39 @@
+@import "~frontend-scss-mixins/mixins";
+
+@mixin input-placeholder {
+    &::-webkit-input-placeholder {
+        @content
+    }
+    &::-moz-placeholder {
+        @content
+    }
+    &:-moz-placeholder {
+        @content
+    }
+    &:-ms-input-placeholder {
+        @content
+    }
+}
+
+
+$tablet-big-screen: "(max-width: 1279px)";
+$mobile-screen: "(max-width: 768px)";
+
+
+@mixin tablet-big-screen {
+    @media #{$tablet-big-screen} {
+        @content;
+    }
+}
+
+@mixin tablet-small-screen {
+    @media #{$tablet-small-screen} {
+        @content;
+    }
+}
+
+@mixin mobile-screen {
+    @media #{$mobile-screen} {
+        @content;
+    }
+}
