@@ -16,6 +16,30 @@
 
     @yield('meta')
 
+    @php
+        $latestAsset = static function (string $pattern): ?string {
+            $files = glob(public_path($pattern)) ?: [];
+            usort($files, static function (string $left, string $right): int {
+                return (filemtime($left) <=> filemtime($right)) ?: strcmp($left, $right);
+            });
+
+            return $files ? end($files) : null;
+        };
+
+        $criticalJs = $latestAsset('dist/critical-*.js');
+        $mainJs = $latestAsset('dist/main-*.js');
+        $mainCss = $latestAsset('dist/main-*.css');
+    @endphp
+
+    @if($criticalJs)
+        <script defer fetchpriority="high" src="{{ asset('dist/'.basename($criticalJs)) }}"></script>
+    @endif
+    @if($mainJs)
+        <script defer src="{{ asset('dist/'.basename($mainJs)) }}"></script>
+    @endif
+
+    @yield('preload')
+
     <!-- Google Tag Manager -->
     <script>window.dataLayer = window.dataLayer || [];</script>
     <script>(function (w, d, s, l, i) {
@@ -33,15 +57,9 @@
         })(window, document, 'script', 'dataLayer', 'GTM-5KV8H8D4');</script>
     <!-- End Google Tag Manager -->
 
-    @php
-        $jsFiles = glob(public_path('dist/main-*.js')) ?: [];
-        $cssFiles = glob(public_path('dist/main-*.css')) ?: [];
-        $js = $jsFiles ? basename(end($jsFiles)) : null;
-        $css = $cssFiles ? end($cssFiles) : null;
-    @endphp
-    @if($css)
+    @if($mainCss)
         <style>
-            {!! file_get_contents($css) !!}
+            {!! file_get_contents($mainCss) !!}
         </style>
     @endif
 </head>
@@ -63,10 +81,6 @@
 @include('components.locale-selector.locale-selector')
 @include('components.global-loader.global-loader')
 
-
-@if($js)
-    <script src="{{ asset('dist/'.$js) }}"></script>
-@endif
 
 <!-- Meta Pixel Code -->
 <script>

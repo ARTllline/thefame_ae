@@ -6,7 +6,6 @@
  * Copyright (C) 2024 Helen Nikitina
  */
 
-import './notification.scss';
 export default function Notification(options = {}) {
   let opts = {};
   let timeouts = {};

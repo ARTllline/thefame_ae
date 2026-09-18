@@ -19,3 +19,13 @@
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
 </IfModule>
+
+<IfModule mod_headers.c>
+    # Webpack changes the content hash after every relevant source change.
+    # These files can be cached forever because a new build gets a new URL.
+    <FilesMatch "^(main|critical)-[0-9a-f]+\.(css|js)$">
+        Header set Cache-Control "public, max-age=31536000, immutable"
+        Header unset Pragma
+        Header unset Expires
+    </FilesMatch>
+</IfModule>

@@ -51,18 +51,26 @@ const getFilesArray = (options) => {
     return filesArray;
 };
 
+const modalEntry = path.resolve(__dirname, './resources/views/components/modal/modal.js');
+const mainEntryExcludes = new Set([
+    modalEntry,
+    path.resolve(__dirname, './resources/views/components/notification/notification-es.js'),
+    path.resolve(__dirname, './resources/views/components/notification/notification.js'),
+]);
+
 const main = getFilesArray({
     dir: path.resolve(__dirname, './resources'),
     extensions: ['js', 'scss']
-});
+}).filter(file => !mainEntryExcludes.has(path.normalize(file)));
 
 module.exports = {
     mode: 'development',
     entry: {
+        critical: modalEntry,
         main,
     },
     output: {
-        filename: '[name]-[hash].js',
+        filename: '[name]-[contenthash].js',
         path: path.resolve(__dirname, './public/dist'),
         clean: true,
     },
@@ -113,7 +121,7 @@ module.exports = {
     },
     plugins: [
         new MiniCssExtractPlugin({
-            filename: '[name]-[hash].css',
+            filename: '[name]-[contenthash].css',
         }),
     ],
 };

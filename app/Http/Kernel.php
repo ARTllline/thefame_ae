@@ -39,6 +39,7 @@ class Kernel extends HttpKernel
             \Badinansoft\LanguageSwitch\Http\Middleware\LanguageSwitch::class,
             //\App\Http\Middleware\CheckRegion::class,
             \App\Http\Middleware\SetLocale::class,
+            \App\Http\Middleware\PreventHtmlCaching::class,
         ],
 
         'api' => [

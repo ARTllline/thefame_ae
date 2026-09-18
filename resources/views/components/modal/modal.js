@@ -1,11 +1,12 @@
-import axios from "axios";
 import Notification from '../notification/notification-es';
-import { readUtmCookies } from '../utils/utm';
+import { persistUtmFromUrl, readUtmCookies } from '../utils/utm';
 
 const classPrefix = 'modal';
 const dataPrefix = 'data-modal';
 const $container = document.querySelector(`[${dataPrefix}]`);
 const popup = Notification({ isHidePrev: true });
+
+persistUtmFromUrl();
 
 if ($container) {
     modal();
@@ -178,14 +179,26 @@ export function modal() {
             };
 
             const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content');
-            const response = await axios.post('/appointment', payload, {
+            const response = await fetch('/appointment', {
+                method: 'POST',
                 headers: {
+                    'Content-Type': 'application/json',
                     Accept: 'application/json',
                     ...(csrfToken ? { 'X-CSRF-TOKEN': csrfToken } : {}),
                 },
+                credentials: 'same-origin',
+                body: JSON.stringify(payload),
             });
+            const responseData = await response.json().catch(() => ({}));
 
-            if (response.data?.success) {
+            if (!response.ok) {
+                const requestError = new Error(responseData.message || requestErrorMessage);
+                requestError.status = response.status;
+                requestError.data = responseData;
+                throw requestError;
+            }
+
+            if (responseData?.success) {
                 $nameInput.value = '';
                 $phoneInput.value = '';
                 if ($treatmentInput) $treatmentInput.value = '';
@@ -198,11 +211,11 @@ export function modal() {
 
                 window.dataLayer = window.dataLayer || [];
             } else {
-                popup.error({ message: response.data?.message || requestErrorMessage });
+                popup.error({ message: responseData?.message || requestErrorMessage });
             }
         } catch (error) {
-            if (error.response?.status === 422) {
-                const errors = error.response.data.errors || {};
+            if (error.status === 422) {
+                const errors = error.data?.errors || {};
                 if (errors.name) {
                     $nameErr.textContent = errors.name[0];
                     $nameErr.style.opacity = '1';
@@ -223,7 +236,9 @@ export function modal() {
                     popup.error({ message: requestErrorMessage });
                 }
             } else {
-                popup.error({ message: error.response?.data?.message || requestErrorMessage });
+                const message = error.data?.message
+                    || (error.status ? error.message : requestErrorMessage);
+                popup.error({ message });
             }
         } finally {
             isSubmitting = false;

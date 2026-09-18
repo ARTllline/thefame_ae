@@ -1,5 +1,3 @@
-import { initBannerSlider } from "../swiper/swiper";
-
 const classPrefix = 'header';
 const dataPrefix = 'data-header';
 const $container = document.querySelector(`[${dataPrefix}]`);

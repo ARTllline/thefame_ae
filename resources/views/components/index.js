@@ -1,9 +1,4 @@
 export const mobileBreakpoint = 1280
-export const axios = require('axios');
-
-axios.defaults.headers.common['Content-Type'] = 'application/json';
-axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-axios.defaults.withCredentials = true;
 
 const links = Array.from(document.querySelectorAll('a'))
 
